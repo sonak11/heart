@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HEART Platform</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); }
+  ::selection { background: var(--scarlet-100); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--ink-200); border-radius: 999px; border: 2px solid var(--paper); }
+
+  /* ===================== mobile / responsive ===================== */
+  @media (max-width: 860px) {
+    :root { --content-max: 100%; }
+    #root [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    #root main [style*="display: flex"][style*="space-between"] { flex-wrap: wrap; }
+    #root [style*="var(--topbar-h)"][style*="flex-wrap"] { padding-left: 14px !important; padding-right: 14px !important; }
+    #root [style*="font-size: 64px"] { font-size: 46px !important; }
+    #root main svg[width="100%"] { max-width: 100%; }
+    .heart-copilot-drawer { width: 100% !important; max-width: 420px; }
+  }
+  @media (max-width: 540px) {
+    #root [style*="font-size: 64px"] { font-size: 38px !important; }
+    .heart-copilot-drawer { max-width: none; }
+  }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel" src="ui_kits/heart-platform/DataModel.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/Icons.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/Charts.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/Kit.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/FilterBar.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/CommandPalette.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/Copilot.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/AppShell.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/ExecutiveOverview.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/VoiceVsAuthority.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/QuoteExplorer.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/ExecutiveMode.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/DashboardsA.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/DashboardsB.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/DashboardsC.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/DashboardsD.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/DashboardsE.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/DashboardsF.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/DashboardsG.jsx"></script>
+<script type="text/babel" src="ui_kits/heart-platform/Hubs.jsx"></script>
+<script type="text/babel">
+  // 12 consolidated routes. Sub-screens live as tabs inside hub pages; legacy
+  // ids are kept as ALIASES that deep-link straight to the right hub + tab.
+  const TITLES = {
+    overview:   ['Intelligence', 'Executive Command Center'],
+    readiness:  ['Intelligence', 'Health Equity Readiness Score'],
+    voice:      ['Flagship dashboard', 'Voice vs Authority'],
+    theme:      ['Intelligence', 'Theme Intelligence'],
+    circle:     ['Intelligence', 'Engagement & Stakeholders'],
+    gap:        ['Intelligence', 'Gaps & Barriers'],
+    quotes:     ['Evidence', 'Quote Explorer'],
+    matrix:     ['Evidence', 'Coding Matrix Explorer'],
+    patterns:   ['Evidence', 'Connections, Trends & Geography'],
+    coding:     ['Evidence', 'Coding Quality'],
+    recommend:  ['Pipeline & Delivery', 'Programs & Blueprint'],
+    operations: ['Pipeline & Delivery', 'Pipeline Operations'],
+  };
+  const SCREENS = {
+    overview: 'ExecutiveOverview', readiness: 'ReadinessScore', voice: 'VoiceAuthority',
+    theme: 'ThemeHub', circle: 'EngagementHub', gap: 'GapsBarriers',
+    quotes: 'QuoteExplorer', matrix: 'CodingMatrixExplorer', patterns: 'PatternsHub', coding: 'CodingQuality',
+    recommend: 'ProgramsBlueprint', operations: 'Operations',
+  };
+  // legacy route id -> { route: hub, tab } so ⌘K, Executive Mode and in-page
+  // links keep working and deep-link to the correct tab.
+  const ALIAS = {
+    emerging:    { route: 'theme', tab: 'emerging' },
+    blindspot:   { route: 'voice', tab: 'blindspot' },
+    authority:   { route: 'voice', tab: 'authority' },
+    proximity:   { route: 'voice', tab: 'proximity' },
+    stakeholder: { route: 'circle', tab: 'stakeholders' },
+    trust:       { route: 'circle', tab: 'trust' },
+    barrier:     { route: 'gap', tab: 'barriers' },
+    network:     { route: 'patterns', tab: 'network' },
+    trend:       { route: 'patterns', tab: 'timeline' },
+    geo:         { route: 'patterns', tab: 'geography' },
+    program:     { route: 'recommend', tab: 'program' },
+    admin:       { route: 'operations', tab: 'agent' },
+    workflow:    { route: 'operations', tab: 'workflow' },
+    reports:     { route: 'operations', tab: 'reports' },
+    aws:         { route: 'operations', tab: 'aws' },
+  };
+  // The global circle / domain / time lens only drives these analytics pages.
+  // Evidence + Pipeline pages have their own in-page controls, so the bar is
+  // hidden there rather than sitting dead.
+  const FILTERABLE = new Set(['overview', 'readiness', 'voice', 'theme', 'circle', 'gap']);
+
+  function Placeholder({ name, onNavigate }) {
+    const { Panel, Badge, Button } = window.HEARTDesignSystem_d7d056;
+    return (
+      <Panel>
+        <div style={{ textAlign: 'center', padding: '56px 20px', color: 'var(--ink-400)' }}>
+          <div style={{ marginBottom: 12 }}><Badge tone="neutral">Specified · scaffolding in this build</Badge></div>
+          <h2 style={{ font: 'var(--type-h3)', color: 'var(--ink-700)', margin: '0 0 8px' }}>{name}</h2>
+          <p style={{ font: 'var(--type-body)', maxWidth: 460, margin: '0 auto 18px' }}>This surface is part of the platform IA. The 14 analytics dashboards, Quote Explorer, and Executive Mode are fully interactive — explore those from the sidebar or ⌘K.</p>
+          <Button variant="secondary" onClick={() => onNavigate('overview')}>Back to overview</Button>
+        </div>
+      </Panel>
+    );
+  }
+
+  function App() {
+    const [route, setRoute] = React.useState('overview');
+    const [routeTab, setRouteTab] = React.useState(null);
+    const [filters, setFilters] = React.useState({ circle: 'all', domain: 'all', time: 'q2' });
+    const [compare, setCompare] = React.useState(false);
+    const [copilot, setCopilot] = React.useState(false);
+    const [palette, setPalette] = React.useState(false);
+    const [exec, setExec] = React.useState(false);
+    const [theme, setTheme] = React.useState('light');
+    const [savedViews, setSavedViews] = React.useState([{ id: 1, name: 'Community blind spots' }]);
+
+    React.useEffect(() => { document.documentElement.setAttribute('data-theme', theme); }, [theme]);
+
+    React.useEffect(() => {
+      const h = (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPalette((p) => !p); }
+        else if (e.key === 'Escape') { setPalette(false); setCopilot(false); }
+      };
+      window.addEventListener('keydown', h);
+      return () => window.removeEventListener('keydown', h);
+    }, []);
+
+    const navigate = (r) => {
+      const a = ALIAS[r];
+      const dest = a ? a.route : r;
+      if (SCREENS[dest]) { setExec(false); setRoute(dest); setRouteTab(a ? a.tab : null); }
+    };
+    const onAction = (a) => {
+      if (a === 'copilot') setCopilot(true);
+      else if (a === 'exec') setExec(true);
+      else if (a === 'save') { setSavedViews((v) => [...v, { id: Date.now(), name: 'View ' + (v.length + 1) }]); window.pushToast('View saved', 'positive'); }
+      else if (a === 'report') window.pushToast('Executive report generating…', 'neutral');
+      else if (a === 'snapshot') window.pushToast('Snapshot captured', 'positive');
+    };
+
+    const [eyebrow, title] = TITLES[route] || ['', route];
+    const Screen = window[SCREENS[route]];
+
+    const filterBar = (
+      <window.FilterBar
+        filters={filters} setFilters={setFilters} compare={compare} setCompare={setCompare}
+        savedViews={savedViews}
+        onSaveView={() => onAction('save')}
+        onLoadView={(v) => { setFilters({ circle: 1, domain: 'D5', time: 'q2' }); window.pushToast('Loaded · ' + v.name, 'neutral'); }}
+        onSnapshot={() => onAction('snapshot')}
+      />
+    );
+
+    return (
+      <React.Fragment>
+        {exec ? (
+          <window.ExecutiveMode onNavigate={navigate} onExit={() => setExec(false)} />
+        ) : (
+          <window.AppShell
+            active={route} onNavigate={navigate} title={title} eyebrow={eyebrow}
+            onOpenPalette={() => setPalette(true)} onOpenCopilot={() => setCopilot(true)} onExec={() => setExec(true)}
+            theme={theme} onToggleTheme={() => setTheme((t) => (t === 'dark' ? 'light' : 'dark'))}
+            filterBar={FILTERABLE.has(route) ? filterBar : null}
+          >
+            {Screen ? <Screen onNavigate={navigate} filters={filters} compare={compare} initialTab={routeTab} /> : <Placeholder name={title} onNavigate={navigate} />}
+          </window.AppShell>
+        )}
+        <window.Copilot open={copilot} onClose={() => setCopilot(false)} screen={route} />
+        <window.CommandPalette open={palette} onClose={() => setPalette(false)} onNavigate={navigate} onAction={onAction} />
+        <window.Toasts />
+      </React.Fragment>
+    );
+  }
+
+  ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
