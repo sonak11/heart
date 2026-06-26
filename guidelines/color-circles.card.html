@@ -1,0 +1,38 @@
+<!-- @dsCard group="Colors" viewport="700x190" name="Engagement Circles" subtitle="The analytic spine — Community / Internal / Leadership" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:20px; }
+  .row { display:flex; gap:12px; }
+  .circle { flex:1; border-radius:var(--radius-md); border:1px solid var(--border-divider); background:var(--white); overflow:hidden; }
+  .bar { height:8px; }
+  .pad { padding:12px 14px; }
+  .eyebrow { font:var(--w-medium) 11px/1 var(--font-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); }
+  .name { font:var(--w-semibold) 15px/1.3 var(--font-sans); color:var(--text-display); margin-top:5px; }
+  .dot { display:inline-block; width:10px; height:10px; border-radius:999px; vertical-align:middle; margin-right:6px; }
+  .soft { display:inline-block; margin-top:9px; padding:3px 9px; border-radius:999px; font:var(--w-medium) 11px/1.4 var(--font-sans); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="circle"><div class="bar" style="background:var(--circle-community)"></div><div class="pad">
+      <div class="eyebrow">Circle 1</div>
+      <div class="name"><span class="dot" style="background:var(--circle-community)"></span>Community Voice</div>
+      <span class="soft" style="background:var(--circle-community-soft);color:var(--circle-community)">clay · #C2541E</span>
+    </div></div>
+    <div class="circle"><div class="bar" style="background:var(--circle-internal)"></div><div class="pad">
+      <div class="eyebrow">Circle 2</div>
+      <div class="name"><span class="dot" style="background:var(--circle-internal)"></span>Internal Stakeholders</div>
+      <span class="soft" style="background:var(--circle-internal-soft);color:var(--circle-internal)">teal · #1F7A6E</span>
+    </div></div>
+    <div class="circle"><div class="bar" style="background:var(--circle-leadership)"></div><div class="pad">
+      <div class="eyebrow">Circle 3</div>
+      <div class="name"><span class="dot" style="background:var(--circle-leadership)"></span>Leadership</div>
+      <span class="soft" style="background:var(--circle-leadership-soft);color:var(--circle-leadership)">deep blue · #2C4A8C</span>
+    </div></div>
+  </div>
+</body>
+</html>

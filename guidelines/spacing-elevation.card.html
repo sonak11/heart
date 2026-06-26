@@ -1,0 +1,24 @@
+<!-- @dsCard group="Spacing" viewport="700x180" name="Elevation" subtitle="Soft warm-tinted shadows — border first, shadow second" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:26px 24px; }
+  .row { display:flex; gap:22px; }
+  .item { text-align:center; }
+  .box { width:120px; height:64px; background:var(--white); border:1px solid var(--border-divider); border-radius:var(--radius-md); }
+  .name { margin-top:12px; font:var(--w-semibold) 11px/1.2 var(--font-sans); color:var(--text-display); }
+  .use { font:var(--w-regular) 10px/1.4 var(--font-mono); color:var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-xs)"></div><div class="name">xs</div><div class="use">hairline lift</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-sm)"></div><div class="name">sm</div><div class="use">cards</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-md)"></div><div class="name">md</div><div class="use">popovers</div></div>
+    <div class="item"><div class="box" style="box-shadow:var(--shadow-lg)"></div><div class="name">lg</div><div class="use">dialogs</div></div>
+  </div>
+</body>
+</html>

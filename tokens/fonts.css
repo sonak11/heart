@@ -1,0 +1,9 @@
+/* HEART webfonts.
+   SUBSTITUTION FLAG: No brand font binaries were provided, so these are the
+   closest Google Fonts matches. Swap the @import for self-hosted @font-face
+   rules + woff2 files when the real faces are available.
+   - Newsreader  -> editorial serif: headlines, big KPI numbers, report prose
+   - Public Sans -> civic UI sans (USWDS face): all interface chrome, tables, labels
+   - IBM Plex Mono -> data + code: codes, IDs, axis labels, AWS surfaces */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');

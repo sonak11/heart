@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x120" name="Heat / Gap Ramp" subtitle="Sequential intensity for gap-analysis heatmaps" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:20px; }
+  .ramp { display:flex; border-radius:var(--radius-md); overflow:hidden; border:1px solid rgba(0,0,0,.06); }
+  .step { flex:1; height:56px; display:flex; align-items:flex-end; justify-content:center; padding-bottom:6px; font:var(--w-medium) 11px/1 var(--font-mono); }
+  .labels { display:flex; justify-content:space-between; margin-top:8px; font:var(--w-regular) 11px/1 var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:.04em; }
+</style>
+</head>
+<body>
+  <div class="ramp">
+    <div class="step" style="background:var(--heat-0);color:var(--ink-500)">0</div>
+    <div class="step" style="background:var(--heat-1);color:var(--ink-700)">1</div>
+    <div class="step" style="background:var(--heat-2);color:var(--ink-800)">2</div>
+    <div class="step" style="background:var(--heat-3);color:var(--white)">3</div>
+    <div class="step" style="background:var(--heat-4);color:var(--white)">4</div>
+    <div class="step" style="background:var(--heat-5);color:var(--white)">5</div>
+  </div>
+  <div class="labels"><span>no signal</span><span>severe gap</span></div>
+</body>
+</html>

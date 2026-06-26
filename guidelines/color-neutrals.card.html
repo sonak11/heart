@@ -1,0 +1,31 @@
+<!-- @dsCard group="Colors" viewport="700x180" name="Warm Ink Neutrals" subtitle="Warm-paper text, border, and surface ramp" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:20px; }
+  .grid { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; }
+  .sw { border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,.06); overflow:hidden; }
+  .chip { height:48px; }
+  .meta { padding:6px 8px; background:var(--white); }
+  .name { font:var(--w-semibold) 11px/1.2 var(--font-sans); color:var(--text-display); }
+  .hex { font:var(--w-regular) 10px/1.4 var(--font-mono); color:var(--text-muted); text-transform:uppercase; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="sw"><div class="chip" style="background:var(--ink-900)"></div><div class="meta"><div class="name">ink-900</div><div class="hex">display</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-700)"></div><div class="meta"><div class="name">ink-700</div><div class="hex">body</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-500)"></div><div class="meta"><div class="name">ink-500</div><div class="hex">secondary</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-400)"></div><div class="meta"><div class="name">ink-400</div><div class="hex">muted</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-300)"></div><div class="meta"><div class="name">ink-300</div><div class="hex">hairline</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-200)"></div><div class="meta"><div class="name">ink-200</div><div class="hex">border</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-150)"></div><div class="meta"><div class="name">ink-150</div><div class="hex">divider</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--ink-100)"></div><div class="meta"><div class="name">ink-100</div><div class="hex">sunken</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--paper)"></div><div class="meta"><div class="name">paper</div><div class="hex">app bg</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--white);border-bottom:1px solid var(--ink-150)"></div><div class="meta"><div class="name">white</div><div class="hex">surface</div></div></div>
+  </div>
+</body>
+</html>

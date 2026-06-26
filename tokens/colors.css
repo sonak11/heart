@@ -1,0 +1,159 @@
+/* ============================================================
+   HEART · COLOR TOKENS
+   "Intelligence briefing" palette: warm-paper neutrals, Rutgers
+   scarlet brand mark, deep ink for authority, and a disciplined
+   data layer (engagement circles + categorical theme palette).
+   ============================================================ */
+
+:root {
+  /* ---- Brand --------------------------------------------------- */
+  --scarlet-700: #8E0021;   /* pressed / on-dark */
+  --scarlet-600: #B3002D;
+  --scarlet-500: #CC0033;   /* Rutgers scarlet — primary brand */
+  --scarlet-400: #E03A5F;
+  --scarlet-100: #FBE3E8;   /* tint wash */
+  --scarlet-050: #FDF1F3;
+
+  /* ---- Ink / warm neutrals (paper) ----------------------------- */
+  --ink-900: #1A1714;   /* near-black, warm — display text on paper */
+  --ink-800: #26221E;
+  --ink-700: #3A352F;   /* body text */
+  --ink-600: #56504A;
+  --ink-500: #756E66;   /* secondary text */
+  --ink-400: #9A938B;   /* muted / placeholder */
+  --ink-300: #C4BDB4;   /* hairlines on tint */
+  --ink-200: #E2DCD3;   /* borders */
+  --ink-150: #ECE7DF;   /* subtle divider */
+  --ink-100: #F4F0EA;   /* sunken surface */
+  --paper:    #FBF9F5;  /* app background — warm paper */
+  --white:    #FFFFFF;
+
+  /* ---- Authority surface (deep, for exec/leadership chrome) ---- */
+  --slate-900: #14171F;   /* darkest authority surface */
+  --slate-800: #1C2230;
+  --slate-700: #283142;
+  --slate-600: #3A4459;
+  --slate-200: #AEB6C6;
+  --slate-100: #DDE2EC;
+
+  /* ---- Engagement circles (the spine of HEART analytics) ------- */
+  --circle-community: #C2541E;   /* Circle 1 · Community Voice — clay */
+  --circle-community-soft: #F6E6DA;
+  --circle-internal:  #1F7A6E;   /* Circle 2 · Internal Stakeholders — teal */
+  --circle-internal-soft: #DCEFEC;
+  --circle-leadership:#2C4A8C;   /* Circle 3 · Leadership — deep blue */
+  --circle-leadership-soft: #DEE6F4;
+
+  /* ---- Categorical theme palette (parent codes / pillars) ------ */
+  --cat-1: #2C4A8C;   /* indigo   */
+  --cat-2: #1F7A6E;   /* teal     */
+  --cat-3: #C2541E;   /* clay     */
+  --cat-4: #B38A1D;   /* ochre    */
+  --cat-5: #7A4E8C;   /* plum     */
+  --cat-6: #4C7A2C;   /* moss     */
+  --cat-7: #A23B5E;   /* rose     */
+  --cat-8: #487A9E;   /* steel    */
+
+  /* ---- Semantic (status) -------------------------------------- */
+  --positive-600: #1F6B45;
+  --positive-500: #2E8B5A;
+  --positive-100: #DDEEE3;
+  --caution-600:  #9A6A00;
+  --caution-500:  #C28A1A;
+  --caution-100:  #F6EBD2;
+  --critical-600: #A01029;
+  --critical-500: #C61F3D;   /* alerts — kept distinct from scarlet brand */
+  --critical-100: #F8DEE2;
+  --info-600:     #1E5F94;
+  --info-500:     #2C7BBD;
+  --info-100:     #DCEAF5;
+
+  /* ---- Heat scale (gap / intensity ramps) --------------------- */
+  --heat-0: #F4F0EA;
+  --heat-1: #F8DCC6;
+  --heat-2: #F0B894;
+  --heat-3: #E08A5A;
+  --heat-4: #C2541E;
+  --heat-5: #8E3410;
+
+  /* ============================================================
+     SEMANTIC ALIASES — author UI against these, not raw values.
+     ============================================================ */
+  --bg-app:        var(--paper);
+  --bg-authority:  var(--slate-900);   /* exec banners, leadership chrome */
+  --surface-card:  var(--white);
+  --surface-sunken:var(--ink-100);
+  --surface-tint:  var(--scarlet-050);
+
+  --text-display:  var(--ink-900);
+  --text-body:     var(--ink-700);
+  --text-secondary:var(--ink-500);
+  --text-muted:    var(--ink-400);
+  --text-on-brand: var(--white);
+  --text-on-authority: var(--slate-100);
+  --text-link:     var(--scarlet-600);
+
+  --border-default:var(--ink-200);
+  --border-strong: var(--ink-300);
+  --border-divider:var(--ink-150);
+
+  --brand:         var(--scarlet-500);
+  --brand-hover:   var(--scarlet-600);
+  --brand-press:   var(--scarlet-700);
+  --focus-ring:    var(--scarlet-400);
+
+  --bg-topbar:     rgba(251, 249, 245, 0.82);  /* translucent paper for sticky chrome */
+}
+
+/* ============================================================
+   DARK MODE — remaps the warm-neutral base ramp so every
+   token-driven surface inverts automatically. Brand + circle
+   hues are nudged brighter for contrast on dark.
+   ============================================================ */
+[data-theme="dark"] {
+  --ink-900: #F5F1EA;   /* display text → warm near-white */
+  --ink-800: #E7E2D9;
+  --ink-700: #D6D0C5;   /* body */
+  --ink-600: #B4ADA1;
+  --ink-500: #948D81;   /* secondary */
+  --ink-400: #7C7468;   /* muted */
+  --ink-300: #574F45;   /* hairline on tint */
+  --ink-200: #3A352D;   /* border */
+  --ink-150: #2E2A23;   /* divider */
+  --ink-100: #24211B;   /* sunken */
+  --paper:   #16140F;   /* app background — deep warm */
+  --white:   #201D16;   /* lifted card surface */
+
+  --scarlet-050: #2A1A1C;   /* active-nav / insight wash on dark */
+  --scarlet-100: #3A1F25;
+  --scarlet-500: #E8466A;   /* brand brightened for dark contrast */
+  --scarlet-400: #F0698A;
+
+  --circle-community: #E07A3E;
+  --circle-community-soft: #2E2118;
+  --circle-internal:  #3FA89A;
+  --circle-internal-soft: #16241F;
+  --circle-leadership:#5B82C8;
+  --circle-leadership-soft: #161E2E;
+
+  --cat-1: #5B82C8; --cat-2: #3FA89A; --cat-3: #E07A3E; --cat-4: #D4AC3A;
+  --cat-5: #A878BE; --cat-6: #79AE4E; --cat-7: #CC6488; --cat-8: #6FA3C4;
+
+  --heat-0: #24211B; --heat-1: #3A2A1E; --heat-2: #6B3F1E;
+  --heat-3: #9A551F; --heat-4: #C2541E; --heat-5: #E8884A;
+
+  --positive-600: #5FC78C; --positive-500: #3FA86E; --positive-100: #15291D;
+  --caution-600:  #E0B24A; --caution-500:  #C99A2A; --caution-100:  #2C2412;
+  --critical-600: #F0697F; --critical-500: #D63A55; --critical-100: #2E141A;
+  --info-600:     #6BB0E8; --info-500:     #3F8FCC; --info-100:     #11212E;
+
+  --bg-authority:  #0E1016;
+  --slate-900: #0E1016; --slate-800: #181D28; --slate-700: #232B3A;
+
+  --bg-topbar:     rgba(22, 20, 15, 0.82);
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.45), 0 1px 2px rgba(0,0,0,0.3);
+  --shadow-md: 0 4px 14px rgba(0,0,0,0.5);
+  --shadow-lg: 0 12px 36px rgba(0,0,0,0.6);
+}

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>HEART Platform</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HEART · Coding Quality</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 * { box-sizing: border-box; }
@@ -300,11 +300,32 @@ html, body { margin: 0; background: var(--paper); }
   --dur-slow: 320ms;  /* @kind other */
 }
 
+
+/* ===================== mobile / responsive ===================== */
+@media (max-width: 860px) {
+  :root { --content-max: 100%; }
+  /* collapse any multi-column grid to a single readable column */
+  #root [style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+  /* let wide space-between rows stack instead of overflowing */
+  #root main [style*="display: flex"][style*="space-between"] { flex-wrap: wrap; }
+  /* tighten the sticky filter bar gutters (matches its inline signature) */
+  #root [style*="var(--topbar-h)"][style*="flex-wrap"] { padding-left: 14px !important; padding-right: 14px !important; }
+  /* shrink oversized hero KPI numbers so they fit */
+  #root [style*="font-size: 64px"] { font-size: 46px !important; }
+  /* keep responsive charts inside their cards */
+  #root main svg[width="100%"] { max-width: 100%; }
+  /* copilot becomes a full-width sheet */
+  .heart-copilot-drawer { width: 100% !important; max-width: 420px; }
+}
+@media (max-width: 540px) {
+  #root [style*="font-size: 64px"] { font-size: 38px !important; }
+  .heart-copilot-drawer { max-width: none; }
+}
+
 </style>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-<!-- HEART Design System compiled bundle (window.HEARTDesignSystem_d7d056) -->
 <script>
 /* @ds-bundle: {"format":3,"namespace":"HEARTDesignSystem_d7d056","components":[{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"CircleBadge","sourcePath":"components/core/CircleBadge.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"KpiCard","sourcePath":"components/core/KpiCard.jsx"},{"name":"Panel","sourcePath":"components/core/Panel.jsx"},{"name":"Select","sourcePath":"components/core/Select.jsx"},{"name":"Tabs","sourcePath":"components/core/Tabs.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"}],"sourceHashes":{"components/core/Badge.jsx":"1fefea9b2a62","components/core/Button.jsx":"00ca15c66018","components/core/CircleBadge.jsx":"304b178e877e","components/core/Input.jsx":"3546f1e81ba8","components/core/KpiCard.jsx":"a8699c40057c","components/core/Panel.jsx":"db92825cb79d","components/core/Select.jsx":"e137f5e38370","components/core/Tabs.jsx":"60518b3dfad3","components/core/Tag.jsx":"9b5831eef7e4","ui_kits/heart-platform/AppShell.jsx":"b26f068e0229","ui_kits/heart-platform/Charts.jsx":"5527ca019d33","ui_kits/heart-platform/CommandPalette.jsx":"8c10f2676150","ui_kits/heart-platform/Copilot.jsx":"d711f6984bbe","ui_kits/heart-platform/DashboardsA.jsx":"6a71ba740cca","ui_kits/heart-platform/DashboardsB.jsx":"73dc49ce490a","ui_kits/heart-platform/DashboardsC.jsx":"a27af74d3628","ui_kits/heart-platform/DashboardsD.jsx":"738182a79e0d","ui_kits/heart-platform/DashboardsE.jsx":"f0368835307f","ui_kits/heart-platform/DashboardsF.jsx":"594dd5a688b4","ui_kits/heart-platform/DashboardsG.jsx":"4f6b2fa88155","ui_kits/heart-platform/DataModel.jsx":"ebd014c561bb","ui_kits/heart-platform/ExecutiveMode.jsx":"3734d6990df7","ui_kits/heart-platform/ExecutiveOverview.jsx":"ea3e2f70c3d2","ui_kits/heart-platform/FilterBar.jsx":"3e8019b1b9a2","ui_kits/heart-platform/Hubs.jsx":"9a25a427d524","ui_kits/heart-platform/Icons.jsx":"5700509e61e3","ui_kits/heart-platform/Kit.jsx":"9d84e66200e2","ui_kits/heart-platform/QuoteExplorer.jsx":"5263dbabcb2a","ui_kits/heart-platform/VoiceVsAuthority.jsx":"6ae7df6abc72"},"inlinedExternals":[],"unexposedExports":[]} */
 
@@ -11850,7 +11871,9 @@ window.Icon = Icon;
 </script>
 
 <script type="text/babel" data-module="AppShell">
-/* HEART platform application shell — sidebar + topbar + content frame. */
+/* HEART platform application shell — sidebar + topbar + content frame.
+   Responsive: on phones the sidebar becomes an off-canvas drawer and the
+   top bar condenses to icon actions. */
 
 const NAV = [
   { section: 'Intelligence', items: [
@@ -11873,6 +11896,20 @@ const NAV = [
   ]},
 ];
 
+// Small media-query hook so the shell can restructure on phones.
+function useMedia(query) {
+  const get = () => (typeof window !== 'undefined' && window.matchMedia ? window.matchMedia(query).matches : false);
+  const [match, setMatch] = React.useState(get);
+  React.useEffect(() => {
+    const m = window.matchMedia(query);
+    const on = () => setMatch(m.matches);
+    on();
+    m.addEventListener ? m.addEventListener('change', on) : m.addListener(on);
+    return () => { m.removeEventListener ? m.removeEventListener('change', on) : m.removeListener(on); };
+  }, [query]);
+  return match;
+}
+
 function Logo() {
   return (
     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -11890,6 +11927,51 @@ function Logo() {
   );
 }
 
+function NavList({ active, onNavigate }) {
+  return (
+    <nav style={{ padding: '14px 12px', overflowY: 'auto', flex: 1 }}>
+      {NAV.map((grp) => (
+        <div key={grp.section} style={{ marginBottom: 18 }}>
+          <div style={{ font: 'var(--type-eyebrow)', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase', color: 'var(--ink-400)', padding: '0 10px', marginBottom: 8 }}>{grp.section}</div>
+          {grp.items.map((it) => {
+            const on = active === it.id;
+            const Glyph = window.Icon[it.icon];
+            return (
+              <button key={it.id} type="button" onClick={() => onNavigate(it.id)}
+                style={{
+                  display: 'flex', alignItems: 'center', gap: 10, width: '100%',
+                  padding: '10px 10px', marginBottom: 2, border: 'none', cursor: 'pointer',
+                  borderRadius: 'var(--radius-sm)', textAlign: 'left',
+                  background: on ? 'var(--scarlet-050)' : 'transparent',
+                  color: on ? 'var(--scarlet-700)' : 'var(--ink-600)',
+                  fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: on ? 600 : 500,
+                  transition: 'background var(--dur-fast)',
+                }}>
+                <span style={{ color: on ? 'var(--scarlet-500)' : 'var(--ink-400)', display: 'inline-flex' }}><Glyph size={18} /></span>
+                <span style={{ flex: 1 }}>{it.label}</span>
+                {it.flag && <span style={{ width: 6, height: 6, borderRadius: 999, background: 'var(--scarlet-500)' }} />}
+              </button>
+            );
+          })}
+        </div>
+      ))}
+    </nav>
+  );
+}
+
+function UserCard() {
+  return (
+    <div style={{ padding: '12px 16px', borderTop: '1px solid var(--border-divider)', display: 'flex', alignItems: 'center', gap: 10 }}>
+      <div style={{ width: 30, height: 30, borderRadius: 999, background: 'var(--circle-leadership)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 12 }}>RA</div>
+      <div style={{ lineHeight: 1.3 }}>
+        <div style={{ fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 600, color: 'var(--ink-800)' }}>Research Author</div>
+        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--ink-400)' }}>QuickSight · Author</div>
+      </div>
+    </div>
+  );
+}
+
+/* Desktop sticky sidebar */
 function Sidebar({ active, onNavigate }) {
   return (
     <aside style={{
@@ -11898,47 +11980,74 @@ function Sidebar({ active, onNavigate }) {
       position: 'sticky', top: 0, display: 'flex', flexDirection: 'column',
     }}>
       <div style={{ padding: '18px 20px', borderBottom: '1px solid var(--border-divider)' }}><Logo /></div>
-      <nav style={{ padding: '14px 12px', overflowY: 'auto', flex: 1 }}>
-        {NAV.map((grp) => (
-          <div key={grp.section} style={{ marginBottom: 18 }}>
-            <div style={{ font: 'var(--type-eyebrow)', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase', color: 'var(--ink-400)', padding: '0 10px', marginBottom: 8 }}>{grp.section}</div>
-            {grp.items.map((it) => {
-              const on = active === it.id;
-              const Glyph = window.Icon[it.icon];
-              return (
-                <button key={it.id} type="button" onClick={() => onNavigate(it.id)}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: 10, width: '100%',
-                    padding: '8px 10px', marginBottom: 2, border: 'none', cursor: 'pointer',
-                    borderRadius: 'var(--radius-sm)', textAlign: 'left',
-                    background: on ? 'var(--scarlet-050)' : 'transparent',
-                    color: on ? 'var(--scarlet-700)' : 'var(--ink-600)',
-                    fontFamily: 'var(--font-sans)', fontSize: 14, fontWeight: on ? 600 : 500,
-                    transition: 'background var(--dur-fast)',
-                  }}>
-                  <span style={{ color: on ? 'var(--scarlet-500)' : 'var(--ink-400)', display: 'inline-flex' }}><Glyph size={18} /></span>
-                  <span style={{ flex: 1 }}>{it.label}</span>
-                  {it.flag && <span style={{ width: 6, height: 6, borderRadius: 999, background: 'var(--scarlet-500)' }} />}
-                </button>
-              );
-            })}
-          </div>
-        ))}
-      </nav>
-      <div style={{ padding: '12px 16px', borderTop: '1px solid var(--border-divider)', display: 'flex', alignItems: 'center', gap: 10 }}>
-        <div style={{ width: 30, height: 30, borderRadius: 999, background: 'var(--circle-leadership)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-sans)', fontWeight: 600, fontSize: 12 }}>RA</div>
-        <div style={{ lineHeight: 1.3 }}>
-          <div style={{ fontFamily: 'var(--font-sans)', fontSize: 13, fontWeight: 600, color: 'var(--ink-800)' }}>Research Author</div>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--ink-400)' }}>QuickSight · Author</div>
-        </div>
-      </div>
+      <NavList active={active} onNavigate={onNavigate} />
+      <UserCard />
     </aside>
   );
 }
 
-function TopBar({ title, eyebrow, children, onOpenPalette, onOpenCopilot, onExec, theme, onToggleTheme }) {
-  const { Button } = window.HEARTDesignSystem_d7d056;
+/* Mobile off-canvas drawer */
+function Drawer({ open, onClose, active, onNavigate, onExec, theme, onToggleTheme }) {
   const ThemeIcon = window.Icon[theme === 'dark' ? 'sun' : 'moon'];
+  return (
+    <React.Fragment>
+      <div onClick={onClose} style={{
+        position: 'fixed', inset: 0, background: 'rgba(20,18,15,0.42)', zIndex: 40,
+        opacity: open ? 1 : 0, pointerEvents: open ? 'auto' : 'none',
+        transition: 'opacity var(--dur-base) var(--ease-out)',
+      }} />
+      <aside style={{
+        position: 'fixed', top: 0, left: 0, height: '100dvh', width: 'min(86vw, 320px)', zIndex: 41,
+        background: 'var(--white)', borderRight: '1px solid var(--border-divider)',
+        display: 'flex', flexDirection: 'column', boxShadow: 'var(--shadow-lg)',
+        transform: open ? 'translateX(0)' : 'translateX(-102%)',
+        transition: 'transform var(--dur-base) var(--ease-out)',
+      }}>
+        <div style={{ padding: '16px 18px', borderBottom: '1px solid var(--border-divider)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Logo />
+          <button type="button" onClick={onClose} aria-label="Close menu" style={{ width: 36, height: 36, flex: 'none', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-default)', background: 'var(--white)', color: 'var(--ink-600)', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>×</button>
+        </div>
+        <NavList active={active} onNavigate={(id) => { onNavigate(id); onClose(); }} />
+        <div style={{ padding: '10px 12px', borderTop: '1px solid var(--border-divider)', display: 'flex', gap: 8 }}>
+          <button type="button" onClick={() => { onToggleTheme(); }} style={{ flex: 1, height: 40, borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-default)', background: 'var(--white)', color: 'var(--ink-700)', cursor: 'pointer', font: 'var(--type-sm)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 7 }}><ThemeIcon size={16} />{theme === 'dark' ? 'Light' : 'Dark'}</button>
+          <button type="button" onClick={() => { onExec(); onClose(); }} style={{ flex: 1, height: 40, borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-default)', background: 'var(--white)', color: 'var(--ink-700)', cursor: 'pointer', font: 'var(--type-sm)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 7 }}><window.Icon.gauge size={16} />Executive</button>
+        </div>
+        <UserCard />
+      </aside>
+    </React.Fragment>
+  );
+}
+
+function IconBtn({ onClick, label, children }) {
+  return (
+    <button type="button" onClick={onClick} aria-label={label} title={label} style={{ width: 38, height: 38, flex: 'none', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-default)', background: 'var(--white)', color: 'var(--ink-600)', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>{children}</button>
+  );
+}
+
+function TopBar({ title, eyebrow, children, onOpenPalette, onOpenCopilot, onExec, theme, onToggleTheme, mobile, onOpenMenu }) {
+  const ThemeIcon = window.Icon[theme === 'dark' ? 'sun' : 'moon'];
+
+  if (mobile) {
+    return (
+      <header style={{
+        minHeight: 'var(--topbar-h)', borderBottom: '1px solid var(--border-divider)',
+        background: 'var(--bg-topbar)', backdropFilter: 'blur(8px)',
+        position: 'sticky', top: 0, zIndex: 7,
+        display: 'flex', alignItems: 'center', gap: 10, padding: '10px 14px',
+      }}>
+        <button type="button" onClick={onOpenMenu} aria-label="Open menu" style={{ width: 38, height: 38, flex: 'none', borderRadius: 'var(--radius-sm)', border: '1px solid var(--border-default)', background: 'var(--white)', color: 'var(--ink-700)', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          {eyebrow && <div style={{ font: 'var(--type-eyebrow)', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase', color: 'var(--ink-400)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{eyebrow}</div>}
+          <h1 style={{ font: 'var(--type-h3)', color: 'var(--ink-900)', margin: 0, letterSpacing: '-0.01em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{title}</h1>
+        </div>
+        <IconBtn onClick={onOpenPalette} label="Search"><window.Icon.search size={17} /></IconBtn>
+        <button type="button" onClick={onOpenCopilot} aria-label="Copilot" title="Copilot" style={{ width: 38, height: 38, flex: 'none', borderRadius: 'var(--radius-sm)', border: 'none', background: 'var(--slate-800)', color: '#fff', cursor: 'pointer', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}><window.Icon.sparkle size={17} /></button>
+      </header>
+    );
+  }
+
   return (
     <header style={{
       height: 'var(--topbar-h)', borderBottom: '1px solid var(--border-divider)',
@@ -11966,13 +12075,20 @@ function TopBar({ title, eyebrow, children, onOpenPalette, onOpenCopilot, onExec
 }
 
 function AppShell({ active, onNavigate, title, eyebrow, onOpenPalette, onOpenCopilot, onExec, filterBar, children, theme, onToggleTheme }) {
+  const mobile = useMedia('(max-width: 860px)');
+  const [drawer, setDrawer] = React.useState(false);
+  React.useEffect(() => { if (!mobile) setDrawer(false); }, [mobile]);
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh', background: 'var(--paper)' }}>
-      <Sidebar active={active} onNavigate={onNavigate} />
+      {!mobile && <Sidebar active={active} onNavigate={onNavigate} />}
+      {mobile && (
+        <Drawer open={drawer} onClose={() => setDrawer(false)} active={active} onNavigate={onNavigate} onExec={onExec} theme={theme} onToggleTheme={onToggleTheme} />
+      )}
       <div style={{ flex: 1, minWidth: 0, display: 'flex', flexDirection: 'column' }}>
-        <TopBar title={title} eyebrow={eyebrow} onOpenPalette={onOpenPalette} onOpenCopilot={onOpenCopilot} onExec={onExec} theme={theme} onToggleTheme={onToggleTheme} />
+        <TopBar title={title} eyebrow={eyebrow} onOpenPalette={onOpenPalette} onOpenCopilot={onOpenCopilot} onExec={onExec} theme={theme} onToggleTheme={onToggleTheme} mobile={mobile} onOpenMenu={() => setDrawer(true)} />
         {filterBar}
-        <main style={{ flex: 1, padding: '28px', maxWidth: 'var(--content-max)', width: '100%', boxSizing: 'border-box' }}>{children}</main>
+        <main style={{ flex: 1, padding: mobile ? '16px' : '28px', maxWidth: 'var(--content-max)', width: '100%', boxSizing: 'border-box' }}>{children}</main>
       </div>
     </div>
   );
@@ -14006,7 +14122,7 @@ window.BarrierIntelligence = BarrierIntelligence;
   }
 
   function App() {
-    const [route, setRoute] = React.useState('overview');
+    const [route, setRoute] = React.useState('coding');
     const [routeTab, setRouteTab] = React.useState(null);
     const [filters, setFilters] = React.useState({ circle: 'all', domain: 'all', time: 'q2' });
     const [compare, setCompare] = React.useState(false);

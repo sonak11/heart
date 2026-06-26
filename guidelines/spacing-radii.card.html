@@ -1,0 +1,25 @@
+<!-- @dsCard group="Spacing" viewport="700x140" name="Radii" subtitle="Restrained corners — analytics surfaces read crisp" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:20px 24px; }
+  .row { display:flex; gap:16px; align-items:flex-end; }
+  .item { text-align:center; }
+  .box { width:72px; height:56px; background:var(--white); border:1px solid var(--border-default); box-shadow:var(--shadow-sm); }
+  .name { margin-top:8px; font:var(--w-semibold) 11px/1.2 var(--font-sans); color:var(--text-display); }
+  .px { font:var(--w-regular) 10px/1.4 var(--font-mono); color:var(--text-muted); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="item"><div class="box" style="border-radius:var(--radius-xs)"></div><div class="name">xs</div><div class="px">3px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-sm)"></div><div class="name">sm</div><div class="px">5px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-md)"></div><div class="name">md</div><div class="px">8px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-lg)"></div><div class="name">lg</div><div class="px">12px</div></div>
+    <div class="item"><div class="box" style="border-radius:var(--radius-pill);width:96px"></div><div class="name">pill</div><div class="px">999px</div></div>
+  </div>
+</body>
+</html>

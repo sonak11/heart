@@ -1,0 +1,27 @@
+<!-- @dsCard group="Colors" viewport="700x130" name="Categorical Theme Palette" subtitle="8 hues for parent codes / pillars — chart series" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:20px; }
+  .grid { display:grid; grid-template-columns:repeat(8,1fr); gap:8px; }
+  .sw { text-align:center; }
+  .chip { height:52px; border-radius:var(--radius-sm); border:1px solid rgba(0,0,0,.06); }
+  .name { font:var(--w-regular) 10px/1.4 var(--font-mono); color:var(--text-muted); margin-top:6px; text-transform:uppercase; }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="sw"><div class="chip" style="background:var(--cat-1)"></div><div class="name">indigo</div></div>
+    <div class="sw"><div class="chip" style="background:var(--cat-2)"></div><div class="name">teal</div></div>
+    <div class="sw"><div class="chip" style="background:var(--cat-3)"></div><div class="name">clay</div></div>
+    <div class="sw"><div class="chip" style="background:var(--cat-4)"></div><div class="name">ochre</div></div>
+    <div class="sw"><div class="chip" style="background:var(--cat-5)"></div><div class="name">plum</div></div>
+    <div class="sw"><div class="chip" style="background:var(--cat-6)"></div><div class="name">moss</div></div>
+    <div class="sw"><div class="chip" style="background:var(--cat-7)"></div><div class="name">rose</div></div>
+    <div class="sw"><div class="chip" style="background:var(--cat-8)"></div><div class="name">steel</div></div>
+  </div>
+</body>
+</html>

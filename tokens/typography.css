@@ -1,0 +1,53 @@
+/* ============================================================
+   HEART · TYPOGRAPHY TOKENS
+   Newsreader (editorial serif) — headlines + big KPI numbers.
+   Public Sans (civic UI sans) — all interface chrome.
+   IBM Plex Mono — codes, IDs, axis + metadata labels.
+   ============================================================ */
+
+:root {
+  /* ---- Families ----------------------------------------------- */
+  --font-serif: 'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-sans:  'Public Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:  'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  /* ---- Weights ------------------------------------------------ */
+  --w-regular: 400;  /* @kind font */
+  --w-medium:  500;  /* @kind font */
+  --w-semibold:600;  /* @kind font */
+  --w-bold:    700;  /* @kind font */
+
+  /* ---- Type scale (px / line-height) -------------------------- */
+  --fs-display:   44px;  --lh-display:   1.05;  /* @kind other */
+  --fs-h1:        32px;  --lh-h1:        1.12;  /* @kind other */
+  --fs-h2:        24px;  --lh-h2:        1.18;  /* @kind other */
+  --fs-h3:        19px;  --lh-h3:        1.25;  /* @kind other */
+  --fs-title:     16px;  --lh-title:     1.35;  /* @kind other */
+  --fs-body:      15px;  --lh-body:      1.55;  /* @kind other */
+  --fs-sm:        13px;  --lh-sm:        1.45;  /* @kind other */
+  --fs-xs:        12px;  --lh-xs:        1.4;   /* @kind other */
+  --fs-kpi:       40px;  --lh-kpi:       1.0;   /* @kind other */
+  --fs-kpi-lg:    56px;  --lh-kpi-lg:    0.98;  /* @kind other */
+
+  /* ---- Tracking ----------------------------------------------- */
+  --tracking-tight:  -0.02em;  /* @kind other */
+  --tracking-normal: 0;        /* @kind other */
+  --tracking-label:  0.06em;   /* @kind other */
+  --tracking-wide:   0.12em;   /* @kind other */
+
+  /* ============================================================
+     SEMANTIC TYPE ROLES
+     ============================================================ */
+  --type-display: var(--w-semibold) var(--fs-display)/var(--lh-display) var(--font-serif);
+  --type-h1:      var(--w-semibold) var(--fs-h1)/var(--lh-h1) var(--font-serif);
+  --type-h2:      var(--w-semibold) var(--fs-h2)/var(--lh-h2) var(--font-sans);
+  --type-h3:      var(--w-semibold) var(--fs-h3)/var(--lh-h3) var(--font-sans);
+  --type-title:   var(--w-semibold) var(--fs-title)/var(--lh-title) var(--font-sans);
+  --type-body:    var(--w-regular) var(--fs-body)/var(--lh-body) var(--font-sans);
+  --type-sm:      var(--w-regular) var(--fs-sm)/var(--lh-sm) var(--font-sans);
+  --type-kpi:     var(--w-semibold) var(--fs-kpi)/var(--lh-kpi) var(--font-serif);
+
+  /* Mono eyebrow/overline — set with --tracking-label + uppercase */
+  --type-eyebrow: var(--w-medium) var(--fs-xs)/1.2 var(--font-mono);
+  --type-meta:    var(--w-regular) var(--fs-xs)/1.4 var(--font-mono);
+}

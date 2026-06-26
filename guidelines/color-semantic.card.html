@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Semantic Status" subtitle="Positive / caution / critical / info — distinct from brand" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:20px; }
+  .grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; }
+  .item { border-radius:var(--radius-md); border:1px solid var(--border-divider); overflow:hidden; background:var(--white); }
+  .chip { height:40px; }
+  .meta { padding:8px 10px; }
+  .name { font:var(--w-semibold) 12px/1.2 var(--font-sans); color:var(--text-display); }
+  .hex { font:var(--w-regular) 10px/1.4 var(--font-mono); color:var(--text-muted); text-transform:uppercase; }
+  .tint { display:inline-block; margin-top:6px; padding:2px 8px; border-radius:999px; font:var(--w-medium) 10px/1.5 var(--font-sans); }
+</style>
+</head>
+<body>
+  <div class="grid">
+    <div class="item"><div class="chip" style="background:var(--positive-500)"></div><div class="meta"><div class="name">Positive</div><div class="hex">#2E8B5A</div><span class="tint" style="background:var(--positive-100);color:var(--positive-600)">on track</span></div></div>
+    <div class="item"><div class="chip" style="background:var(--caution-500)"></div><div class="meta"><div class="name">Caution</div><div class="hex">#C28A1A</div><span class="tint" style="background:var(--caution-100);color:var(--caution-600)">watch</span></div></div>
+    <div class="item"><div class="chip" style="background:var(--critical-500)"></div><div class="meta"><div class="name">Critical</div><div class="hex">#C61F3D</div><span class="tint" style="background:var(--critical-100);color:var(--critical-600)">gap alert</span></div></div>
+    <div class="item"><div class="chip" style="background:var(--info-500)"></div><div class="meta"><div class="name">Info</div><div class="hex">#2C7BBD</div><span class="tint" style="background:var(--info-100);color:var(--info-600)">note</span></div></div>
+  </div>
+</body>
+</html>

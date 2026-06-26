@@ -1,0 +1,77 @@
+<!-- @dsCard group="Components" viewport="700x560" name="Core Components" subtitle="Buttons, badges, circles, KPIs, inputs, tabs" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin:0; background:var(--paper); font-family:var(--font-sans); color:var(--text-body); padding:22px; }
+  .group { margin-bottom:22px; }
+  .glabel { font:var(--w-medium) 11px/1 var(--font-mono); letter-spacing:.06em; text-transform:uppercase; color:var(--text-muted); margin-bottom:11px; }
+  .row { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+  .col2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+</style>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Button, Badge, Tag, CircleBadge, KpiCard, Panel, Input, Select, Tabs } = window.HEARTDesignSystem_d7d056;
+  function Demo() {
+    const [tab, setTab] = React.useState('themes');
+    return (
+      <div>
+        <div className="group">
+          <div className="glabel">Button · variants & sizes</div>
+          <div className="row">
+            <Button variant="primary">Generate report</Button>
+            <Button variant="secondary">Export CSV</Button>
+            <Button variant="ghost">Cancel</Button>
+            <Button variant="authority">Exec view</Button>
+            <Button variant="danger">Flag gap</Button>
+            <Button variant="primary" size="sm">Small</Button>
+            <Button variant="primary" disabled>Disabled</Button>
+          </div>
+        </div>
+        <div className="group">
+          <div className="glabel">Badge · Tag · CircleBadge</div>
+          <div className="row">
+            <Badge tone="positive" dot>On track</Badge>
+            <Badge tone="caution">Watch</Badge>
+            <Badge tone="critical" dot>Gap alert</Badge>
+            <Badge tone="info">Note</Badge>
+            <Badge tone="neutral">142 segments</Badge>
+            <Tag>BARR-04</Tag>
+            <Tag removable>Circle 1</Tag>
+            <CircleBadge circle={1} />
+            <CircleBadge circle={2} />
+            <CircleBadge circle={3} size="sm" />
+          </div>
+        </div>
+        <div className="group">
+          <div className="glabel">KpiCard</div>
+          <div className="col2">
+            <KpiCard label="Interviews coded" value="247" trend="up" trendValue="+18" caption="across 3 circles" />
+            <KpiCard label="Voice–Authority gap" value="31" unit="%" accent="var(--critical-600)" trend="down" trendValue="-4 pts" caption="community themes unmet by leadership" />
+          </div>
+        </div>
+        <div className="group">
+          <div className="glabel">Panel · Tabs · Input · Select</div>
+          <Panel eyebrow="Theme intelligence" title="Top barriers by circle" action={<Button size="sm" variant="ghost">Export</Button>}>
+            <Tabs value={tab} onChange={setTab} tabs={[{value:'overview',label:'Overview'},{value:'themes',label:'Themes',count:7},{value:'gaps',label:'Gaps',count:3}]} style={{marginBottom:'16px'}} />
+            <div className="col2">
+              <Input label="Search quotes" placeholder="e.g. transportation" />
+              <Select label="Engagement circle" options={[{value:'all',label:'All circles'},{value:'1',label:'Community Voice'},{value:'3',label:'Leadership'}]} />
+            </div>
+          </Panel>
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>
