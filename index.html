@@ -323,9 +323,29 @@ html, body { margin: 0; background: var(--paper); }
 }
 
 </style>
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+<script>
+/* Visible-error fallback: if a script (CDN, transpile, or runtime) fails,
+   show the message instead of a blank white page. */
+window.addEventListener('error', function (e) {
+  var root = document.getElementById('root');
+  if (!root || root.childElementCount) return;
+  root.innerHTML = '<div style="max-width:640px;margin:80px auto;padding:24px;font:14px/1.6 -apple-system,BlinkMacSystemFont,sans-serif;color:#3a3a3a">'
+    + '<div style="font-weight:700;font-size:18px;margin-bottom:8px">HEART Platform failed to load</div>'
+    + '<div style="color:#777;margin-bottom:14px">' + (e && e.message ? String(e.message) : 'A required script did not load.') + '</div>'
+    + '<div style="color:#999">If this is a fresh deploy, hard-refresh (Cmd/Ctrl+Shift+R). If it persists, a CDN script (React/Babel) may be blocked on this network.</div></div>';
+});
+window.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    if (!window.React || !window.ReactDOM || !window.Babel) {
+      var ev = new ErrorEvent('error', { message: 'React/Babel CDN scripts did not load (network blocked or offline).' });
+      window.dispatchEvent(ev);
+    }
+  }, 6000);
+});
+</script>
 <script>
 /* @ds-bundle: {"format":3,"namespace":"HEARTDesignSystem_d7d056","components":[{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"CircleBadge","sourcePath":"components/core/CircleBadge.jsx"},{"name":"Input","sourcePath":"components/core/Input.jsx"},{"name":"KpiCard","sourcePath":"components/core/KpiCard.jsx"},{"name":"Panel","sourcePath":"components/core/Panel.jsx"},{"name":"Select","sourcePath":"components/core/Select.jsx"},{"name":"Tabs","sourcePath":"components/core/Tabs.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"}],"sourceHashes":{"components/core/Badge.jsx":"1fefea9b2a62","components/core/Button.jsx":"00ca15c66018","components/core/CircleBadge.jsx":"304b178e877e","components/core/Input.jsx":"3546f1e81ba8","components/core/KpiCard.jsx":"a8699c40057c","components/core/Panel.jsx":"db92825cb79d","components/core/Select.jsx":"e137f5e38370","components/core/Tabs.jsx":"60518b3dfad3","components/core/Tag.jsx":"9b5831eef7e4","ui_kits/heart-platform/AppShell.jsx":"b26f068e0229","ui_kits/heart-platform/Charts.jsx":"5527ca019d33","ui_kits/heart-platform/CommandPalette.jsx":"8c10f2676150","ui_kits/heart-platform/Copilot.jsx":"d711f6984bbe","ui_kits/heart-platform/DashboardsA.jsx":"6a71ba740cca","ui_kits/heart-platform/DashboardsB.jsx":"73dc49ce490a","ui_kits/heart-platform/DashboardsC.jsx":"a27af74d3628","ui_kits/heart-platform/DashboardsD.jsx":"738182a79e0d","ui_kits/heart-platform/DashboardsE.jsx":"f0368835307f","ui_kits/heart-platform/DashboardsF.jsx":"594dd5a688b4","ui_kits/heart-platform/DashboardsG.jsx":"4f6b2fa88155","ui_kits/heart-platform/DataModel.jsx":"ebd014c561bb","ui_kits/heart-platform/ExecutiveMode.jsx":"3734d6990df7","ui_kits/heart-platform/ExecutiveOverview.jsx":"ea3e2f70c3d2","ui_kits/heart-platform/FilterBar.jsx":"3e8019b1b9a2","ui_kits/heart-platform/Hubs.jsx":"9a25a427d524","ui_kits/heart-platform/Icons.jsx":"5700509e61e3","ui_kits/heart-platform/Kit.jsx":"9d84e66200e2","ui_kits/heart-platform/QuoteExplorer.jsx":"5263dbabcb2a","ui_kits/heart-platform/VoiceVsAuthority.jsx":"6ae7df6abc72"},"inlinedExternals":[],"unexposedExports":[]} */
 
